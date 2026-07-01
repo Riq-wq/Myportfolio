@@ -1,33 +1,133 @@
-function Skills() {
-  const skills = [
-    { category: 'Data Analysis', items: ['Power BI', 'Python', 'SQL', 'Data Cleaning', 'Dashboard Design'] },
-    { category: 'Software Development', items: ['React', 'JavaScript', 'Node.js', 'Express', 'Firebase'] },
-    { category: 'Business Tools', items: ['Excel', 'GitHub', 'Reporting', 'Data Modeling', 'API Integration'] },
-  ]
+import { useEffect, useRef, useState } from 'react'
+
+const skills = [
+  {
+    category: 'Data Analysis',
+    accent: 'cyan',
+    items: [
+      { name: 'Power BI', level: 90 },
+      { name: 'Python', level: 80 },
+      { name: 'SQL', level: 85 },
+      { name: 'Data Cleaning', level: 88 },
+      { name: 'Dashboard Design', level: 85 },
+    ],
+  },
+  {
+    category: 'Software Development',
+    accent: 'violet',
+    items: [
+      { name: 'React', level: 82 },
+      { name: 'JavaScript', level: 80 },
+      { name: 'Node.js', level: 70 },
+      { name: 'Express', level: 68 },
+      { name: 'Firebase', level: 65 },
+    ],
+  },
+  {
+    category: 'Business Tools',
+    accent: 'emerald',
+    items: [
+      { name: 'Excel', level: 92 },
+      { name: 'GitHub', level: 80 },
+      { name: 'Reporting', level: 85 },
+      { name: 'Data Modeling', level: 78 },
+      { name: 'API Integration', level: 70 },
+    ],
+  },
+]
+
+const accentClasses = {
+  cyan: {
+    title: 'text-cyan-600 dark:text-cyan-400',
+    bar: 'bg-cyan-500',
+    ring: 'ring-cyan-500/20',
+  },
+  violet: {
+    title: 'text-violet-600 dark:text-violet-400',
+    bar: 'bg-violet-500',
+    ring: 'ring-violet-500/20',
+  },
+  emerald: {
+    title: 'text-emerald-600 dark:text-emerald-400',
+    bar: 'bg-emerald-500',
+    ring: 'ring-emerald-500/20',
+  },
+}
+
+function SkillCard({ group, index, visible }) {
+  const accent = accentClasses[group.accent]
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
-          My Skills
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {skills.map((skillGroup, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-6">
-                {skillGroup.category}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {skillGroup.items.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+    <div
+      className={`rounded-xl bg-white p-8 shadow-lg ring-1 ring-transparent transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-xl dark:bg-gray-800 ${accent.ring} ${
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+      }`}
+      style={{ transitionDelay: `${index * 150}ms` }}
+    >
+      <h3 className={`mb-6 text-2xl font-bold ${accent.title}`}>{group.category}</h3>
+
+      <div className="flex flex-col gap-4">
+        {group.items.map((skill, skillIndex) => (
+          <div key={skill.name}>
+            <div className="mb-1 flex items-center justify-between text-sm font-semibold text-gray-700 dark:text-gray-200">
+              <span>{skill.name}</span>
+              <span className="text-gray-400 dark:text-gray-500">{skill.level}%</span>
             </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+              <div
+                className={`h-full rounded-full ${accent.bar} transition-all duration-1000 ease-out`}
+                style={{
+                  width: visible ? `${skill.level}%` : '0%',
+                  transitionDelay: `${index * 150 + skillIndex * 80}ms`,
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function Skills() {
+  const [visible, setVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const node = sectionRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section id="skills" ref={sectionRef} className="bg-gray-50 py-20 dark:bg-gray-900">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          className={`mb-12 text-center transition-all duration-700 ${
+            visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+          }`}
+        >
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">My Skills</h2>
+          <p className="mt-3 text-gray-500 dark:text-gray-400">
+            Tools and technologies I use to turn data into decisions and ideas into products.
+          </p>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {skills.map((group, index) => (
+            <SkillCard key={group.category} group={group} index={index} visible={visible} />
           ))}
         </div>
       </div>
