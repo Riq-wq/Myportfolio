@@ -110,15 +110,15 @@ function Hero() {
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="rounded-lg bg-slate-100 p-4 dark:bg-slate-950/70">
               <p className="text-sm text-slate-500 dark:text-slate-400">Revenue Analyzed</p>
-              <p className="mt-2 text-3xl font-bold text-cyan-200">438K</p>
+              <p className="mt-2 text-3xl font-bold text-cyan-700 dark:text-cyan-200">438K</p>
             </div>
             <div className="rounded-lg bg-slate-100 p-4 dark:bg-slate-950/70">
               <p className="text-sm text-slate-500 dark:text-slate-400">Profit Found</p>
-              <p className="mt-2 text-3xl font-bold text-emerald-200">37K</p>
+              <p className="mt-2 text-3xl font-bold text-emerald-700 dark:text-emerald-200">37K</p>
             </div>
             <div className="rounded-lg bg-slate-100 p-4 dark:bg-slate-950/70">
               <p className="text-sm text-slate-500 dark:text-slate-400">Projects</p>
-              <p className="mt-2 text-3xl font-bold text-amber-200">3</p>
+              <p className="mt-2 text-3xl font-bold text-amber-700 dark:text-amber-200">3</p>
             </div>
           </div>
 
