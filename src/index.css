@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes roleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  18%,
+  82% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+  }
+}
+
+@keyframes consoleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes progressLoad {
+  0% {
+    width: 22%;
+  }
+  50% {
+    width: 86%;
+  }
+  100% {
+    width: 68%;
+  }
+}
+
+.role-loader {
+  animation: roleReveal 1.8s ease-in-out infinite;
+}
+
+.live-dot {
+  animation: livePulse 1.6s ease-in-out infinite;
+}
+
+.hero-console {
+  animation: consoleFloat 6s ease-in-out infinite;
+}
+
+.hero-progress {
+  animation: progressLoad 4s ease-in-out infinite;
+}
+
+.project-visual {
+  background-size: 220% 220%;
+}
+
+.analytics-visual {
+  background-image:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(14, 116, 144, 0.82)),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%);
+}
+
+.website-visual {
+  background-image:
+    linear-gradient(135deg, rgba(30, 64, 175, 0.88), rgba(5, 150, 105, 0.78)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: auto, 28px 28px;
+}
