@@ -81,7 +81,7 @@ function Hero() {
           <div className="mb-5 grid gap-5 border-b border-slate-900/10 pb-5 dark:border-white/10 sm:grid-cols-[0.9fr_1.1fr]">
             <div className="overflow-hidden rounded-lg border border-white/10 bg-slate-900">
               <img
-                src="/images/hassan-profile-clean.jpeg"
+                src={`${import.meta.env.BASE_URL}images/hassan-profile-clean.jpeg`}
                 alt="Hassan Jumaa"
                 className="h-72 w-full object-cover object-center sm:h-full"
               />
