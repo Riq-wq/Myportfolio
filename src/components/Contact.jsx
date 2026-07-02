@@ -5,6 +5,7 @@ const initialFormData = {
   name: '',
   email: '',
   message: '',
+  website: '', // honeypot: real users never see or fill this
 }
 
 function Contact() {
@@ -30,6 +31,14 @@ function Contact() {
       return
     }
 
+    // Bots fill every field including hidden ones; real visitors never see this one
+    if (formData.website) {
+      setStatus('success')
+      setStatusMessage('Thank you. Your message has been sent successfully, and I will respond as soon as possible.')
+      setFormData(initialFormData)
+      return
+    }
+
     setStatus('sending')
     setStatusMessage('Sending your message...')
 
@@ -39,7 +48,8 @@ function Contact() {
     payload.append('message', formData.message.trim())
     payload.append('_subject', 'New portfolio contact message')
     payload.append('_template', 'table')
-    payload.append('_captcha', 'false')
+    payload.append('_captcha', 'true')
+    payload.append('_honey', formData.website)
 
     try {
       const response = await fetch(contactEndpoint, {
@@ -78,6 +88,16 @@ function Contact() {
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8">
             <form className="space-y-6" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex="-1"
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
               <div className="group">
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   Name

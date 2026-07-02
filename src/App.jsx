@@ -19,7 +19,7 @@ function App() {
         <Projects />
         <Contact />
         <footer className="bg-gray-800 text-white py-6 text-center">
-          <p>&copy; 2026 Hassan Jumaa. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Hassan Jumaa. All rights reserved.</p>
         </footer>
       </div>
     </div>
