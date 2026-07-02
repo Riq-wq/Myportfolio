@@ -79,11 +79,11 @@ function Hero() {
 
         <div className="hero-console relative mx-auto w-full max-w-xl rounded-lg border border-cyan-900/10 bg-white/80 p-5 shadow-2xl shadow-cyan-200/60 backdrop-blur dark:border-white/10 dark:bg-white/10 dark:shadow-cyan-950/60">
           <div className="mb-5 grid gap-5 border-b border-slate-900/10 pb-5 dark:border-white/10 sm:grid-cols-[0.9fr_1.1fr]">
-            <div className="overflow-hidden rounded-lg border border-white/10 bg-slate-900">
+            <div className="mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-lg border border-white/10 bg-slate-900 sm:h-full sm:min-h-72 sm:max-w-none">
               <img
-                src={`${import.meta.env.BASE_URL}images/hassan-profile-clean.jpeg`}
+                src={`${import.meta.env.BASE_URL}images/hassan-profile-focus.jpeg`}
                 alt="Hassan Jumaa"
-                className="h-72 w-full object-cover object-center sm:h-full"
+                className="h-full w-full object-cover object-[70%_50%]"
               />
             </div>
 

@@ -1,5 +1,48 @@
 import { useState, useEffect } from 'react'
 
+function MoonIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3a6.8 6.8 0 0 0 8.7 8.7A8 8 0 1 1 12 3Z" />
+    </svg>
+  )
+}
+
+function SunIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2" />
+      <path d="M12 20v2" />
+      <path d="m4.93 4.93 1.41 1.41" />
+      <path d="m17.66 17.66 1.41 1.41" />
+      <path d="M2 12h2" />
+      <path d="M20 12h2" />
+      <path d="m6.34 17.66-1.41 1.41" />
+      <path d="m19.07 4.93-1.41 1.41" />
+    </svg>
+  )
+}
+
+function MenuIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M4 7h16" />
+      <path d="M4 12h16" />
+      <path d="M4 17h16" />
+    </svg>
+  )
+}
+
+function CloseIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M6 6l12 12" />
+      <path d="M18 6 6 18" />
+    </svg>
+  )
+}
+
 function Navbar({ darkMode, setDarkMode }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -45,21 +88,29 @@ function Navbar({ darkMode, setDarkMode }) {
               ))}
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                aria-label="Toggle color mode"
+                className="grid h-10 w-10 place-items-center rounded-lg bg-gray-200 text-gray-800 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
-                {darkMode ? 'Light' : 'Dark'}
+                {darkMode ? <SunIcon /> : <MoonIcon />}
               </button>
             </div>
           </div>
 
-          <div className="md:hidden">
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="grid h-10 w-10 place-items-center rounded-lg bg-gray-200 text-gray-800 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+              aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {darkMode ? <SunIcon /> : <MoonIcon />}
+            </button>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              className="grid h-10 w-10 place-items-center rounded-lg bg-gray-200 text-gray-800 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
               aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
             >
-              {menuOpen ? 'Close' : 'Menu'}
+              {menuOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
         </div>
@@ -78,12 +129,6 @@ function Navbar({ darkMode, setDarkMode }) {
                 {link.name}
               </a>
             ))}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="w-full py-2 text-left text-gray-700 dark:text-gray-300"
-            >
-              {darkMode ? 'Light Mode' : 'Dark Mode'}
-            </button>
           </div>
         </div>
       )}
