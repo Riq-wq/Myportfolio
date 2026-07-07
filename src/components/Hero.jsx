@@ -79,7 +79,7 @@ function Hero() {
 
         <div className="hero-console relative mx-auto w-full max-w-xl rounded-lg border border-cyan-900/10 bg-white/80 p-5 shadow-2xl shadow-cyan-200/60 backdrop-blur dark:border-white/10 dark:bg-white/10 dark:shadow-cyan-950/60">
           <div className="mb-5 grid gap-5 border-b border-slate-900/10 pb-5 dark:border-white/10 sm:grid-cols-[0.9fr_1.1fr]">
-            <div className="mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-lg border border-white/10 bg-slate-900 sm:h-full sm:min-h-72 sm:max-w-none">
+            <div className="mx-auto aspect-square w-full max-w-[220px] overflow-hidden rounded-full border-4 border-white/60 bg-slate-900 shadow-xl sm:h-full sm:max-w-none sm:max-h-72">
               <img
                 src={`${import.meta.env.BASE_URL}images/hassan-profile-focus.jpeg`}
                 alt="Hassan Jumaa"

@@ -86,6 +86,14 @@ function Navbar({ darkMode, setDarkMode }) {
                   {link.name}
                 </a>
               ))}
+              <a
+                href={`${import.meta.env.BASE_URL}Hassan-Jumaa-Resume.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-cyan-700 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-cyan-800 dark:bg-cyan-300 dark:text-slate-950 dark:hover:bg-cyan-200"
+              >
+                Resume
+              </a>
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="grid h-10 w-10 place-items-center rounded-lg bg-gray-200 text-gray-800 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
@@ -129,6 +137,15 @@ function Navbar({ darkMode, setDarkMode }) {
                 {link.name}
               </a>
             ))}
+            <a
+              href={`${import.meta.env.BASE_URL}Hassan-Jumaa-Resume.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block py-2 font-semibold text-cyan-700 dark:text-cyan-300"
+              onClick={() => setMenuOpen(false)}
+            >
+              Resume
+            </a>
           </div>
         </div>
       )}
