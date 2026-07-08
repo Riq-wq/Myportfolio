@@ -19,6 +19,14 @@ function Hero() {
         <div className="absolute inset-x-0 top-16 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent dark:via-cyan-300/40" />
 
         <div className="text-left">
+          <div className="mx-auto mb-6 aspect-square w-full max-w-[180px] overflow-hidden rounded-full border-4 border-white/60 bg-slate-900 shadow-xl lg:mx-0">
+            <img
+              src={`${import.meta.env.BASE_URL}images/hassan-profile-focus.jpeg`}
+              alt="Hassan Jumaa"
+              className="h-full w-full object-cover object-[70%_50%]"
+            />
+          </div>
+
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-cyan-500/30 bg-white/80 px-4 py-2 text-sm font-semibold text-cyan-900 shadow-lg shadow-cyan-200/50 backdrop-blur dark:border-cyan-300/30 dark:bg-white/10 dark:text-cyan-100 dark:shadow-cyan-950/40">
             <span className="h-2 w-2 rounded-full bg-emerald-400 live-dot" />
             Available for data and web projects
@@ -78,31 +86,19 @@ function Hero() {
         </div>
 
         <div className="hero-console relative mx-auto w-full max-w-xl rounded-lg border border-cyan-900/10 bg-white/80 p-5 shadow-2xl shadow-cyan-200/60 backdrop-blur dark:border-white/10 dark:bg-white/10 dark:shadow-cyan-950/60">
-          <div className="mb-5 grid gap-5 border-b border-slate-900/10 pb-5 dark:border-white/10 sm:grid-cols-[0.9fr_1.1fr]">
-            <div className="mx-auto aspect-square w-full max-w-[220px] overflow-hidden rounded-full border-4 border-white/60 bg-slate-900 shadow-xl sm:h-full sm:max-w-none sm:max-h-72">
-              <img
-                src={`${import.meta.env.BASE_URL}images/hassan-profile-focus.jpeg`}
-                alt="Hassan Jumaa"
-                className="h-full w-full object-cover object-[70%_50%]"
-              />
-            </div>
+          <div className="mb-5 border-b border-slate-900/10 pb-5 dark:border-white/10">
+            <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Live Portfolio Preview</p>
+            <p className="mt-1 text-3xl font-bold text-slate-950 dark:text-white">Hassan Jumaa</p>
+            <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">
+              Data analyst and developer building dashboards, insight workflows, and responsive web tools.
+            </p>
 
-            <div className="flex flex-col justify-between">
-              <div>
-                <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Live Portfolio Preview</p>
-                <p className="mt-1 text-3xl font-bold text-slate-950 dark:text-white">Hassan Jumaa</p>
-                <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                  Data analyst and developer building dashboards, insight workflows, and responsive web tools.
-                </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <div className="rounded-lg bg-emerald-400/15 px-3 py-2 text-sm font-bold text-emerald-200">
+                Online
               </div>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                <div className="rounded-lg bg-emerald-400/15 px-3 py-2 text-sm font-bold text-emerald-200">
-                  Online
-                </div>
-                <div className="rounded-lg bg-cyan-400/15 px-3 py-2 text-sm font-bold text-cyan-200">
-                  Portfolio Live
-                </div>
+              <div className="rounded-lg bg-cyan-400/15 px-3 py-2 text-sm font-bold text-cyan-200">
+                Portfolio Live
               </div>
             </div>
           </div>

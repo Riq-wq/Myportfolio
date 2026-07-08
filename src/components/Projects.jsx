@@ -33,6 +33,16 @@ function Projects() {
       liveLink: 'https://riq-wq.github.io/IMPACTHUB-FOUNDATION/',
       visual: 'website',
     },
+    {
+      title: 'Employee Salary & Headcount Dashboard',
+      type: 'Data Analysis',
+      description: 'End-to-end HR analytics pipeline: cleaned a messy employee dataset with Python and Pandas, loaded it into MySQL, queried it with SQL, and visualized salary and headcount trends in Power BI.',
+      impact: 'Surfaced Nairobi as the highest-paying city (KES 72,500 avg) versus Nakuru\u2019s lowest (KES 48,000), Kisumu as the largest headcount hub, and KES 554,500 in total salary expense across the company.',
+      technologies: ['Python', 'Pandas', 'MySQL', 'SQL', 'Power BI', 'DAX'],
+      link: 'https://github.com/Riq-wq/employee-salary-headcount-dashboard',
+      image: 'https://raw.githubusercontent.com/Riq-wq/employee-salary-headcount-dashboard/main/reports/charts/salary_by_city.png',
+      visual: 'image',
+    },
   ]
 
   const categories = useMemo(
