@@ -5,9 +5,10 @@ const skills = [
     category: 'Data Analysis',
     accent: 'cyan',
     items: [
+      { name: 'Excel', level: 92 },
       { name: 'Power BI', level: 90 },
-      { name: 'Python', level: 80 },
       { name: 'SQL', level: 85 },
+      { name: 'Python', level: 80 },
       { name: 'Data Cleaning', level: 88 },
       { name: 'Dashboard Design', level: 85 },
     ],
@@ -27,7 +28,6 @@ const skills = [
     category: 'Business Tools',
     accent: 'emerald',
     items: [
-      { name: 'Excel', level: 92 },
       { name: 'GitHub', level: 80 },
       { name: 'Reporting', level: 85 },
       { name: 'Data Modeling', level: 78 },

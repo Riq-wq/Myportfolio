@@ -8,7 +8,7 @@ const stats = [
 const expertise = [
   {
     category: 'Data Analysis',
-    items: ['Python & Pandas', 'SQL & MySQL', 'Power BI', 'Tableau', 'Excel', 'Data Cleaning & Modeling'],
+    items: ['Excel', 'Power BI', 'Python & Pandas', 'SQL & MySQL', 'Tableau', 'Data Cleaning & Modeling'],
   },
   {
     category: 'Development',
