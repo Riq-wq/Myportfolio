@@ -10,7 +10,7 @@ const experience = [
       'Built end-to-end analytics pipelines (Python/Pandas → MySQL → Power BI with DAX) to support business intelligence and reporting needs.',
       'Identified and remediated exposed database credentials in a public repository, rotating passwords and migrating to environment-variable-based configuration.',
       'Contributed to software development tasks using React, Vite, and Tailwind CSS alongside core data work.',
-      'Supported fellow attachés with technical documentation and report preparation.',
+      'Supported fellow attachees with technical documentation and report preparation.',
     ],
   },
 ]
