@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const experience = [
   {
-    role: 'Data Analytics & BI Attaché',
+    role: 'Data Analytics & BI Attachee',
     org: 'Swahilipot Hub Foundation',
     location: 'Mombasa, Kenya',
     period: 'May 11 – Jul 31, 2026',
