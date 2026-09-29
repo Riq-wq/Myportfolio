@@ -1,13 +1,12 @@
 import { useState } from 'react'
 
 const contactEndpoint = 'https://api.web3forms.com/submit'
-const accessKey = import.meta.env.VITE_WEB3FORMS_KEY
+const accessKey = 'ea19a5d0-1584-4431-9ee1-ad80f9019c9a'
 const requestTimeoutMs = 20000
 const maxAttempts = 3
 const retryDelayMs = 1500
 const SUCCESS_MESSAGE = 'Thank you. Your message has been sent successfully, and I will respond as soon as possible.'
 const FAILURE_MESSAGE = 'Sorry, your message could not be sent right now. Please email me directly at jumaah933@gmail.com.'
-const UNCONFIGURED_MESSAGE = 'The contact form is not configured yet. Please email me directly at jumaah933@gmail.com.'
 const initialFormData = {
   name: '',
   email: '',
@@ -110,12 +109,6 @@ function Contact() {
       setStatus('success')
       setStatusMessage(SUCCESS_MESSAGE)
       setFormData(initialFormData)
-      return
-    }
-
-    if (!accessKey) {
-      setStatus('error')
-      setStatusMessage(UNCONFIGURED_MESSAGE)
       return
     }
 
