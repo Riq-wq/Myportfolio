@@ -1,12 +1,23 @@
 import { useState } from 'react'
 
-const contactEndpoint = 'https://formsubmit.co/ajax/jumaah933@gmail.com'
+const contactEndpoint = 'https://api.web3forms.com/submit'
+const accessKey = import.meta.env.VITE_WEB3FORMS_KEY
+const requestTimeoutMs = 20000
+const maxAttempts = 3
+const retryDelayMs = 1500
+const SUCCESS_MESSAGE = 'Thank you. Your message has been sent successfully, and I will respond as soon as possible.'
+const FAILURE_MESSAGE = 'Sorry, your message could not be sent right now. Please email me directly at jumaah933@gmail.com.'
+const UNCONFIGURED_MESSAGE = 'The contact form is not configured yet. Please email me directly at jumaah933@gmail.com.'
 const initialFormData = {
   name: '',
   email: '',
   message: '',
   website: '', // honeypot: real users never see or fill this
 }
+
+const isSuccessfulResponse = (data) => data?.success === true || data?.success === 'true'
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 function Contact() {
   const [formData, setFormData] = useState(initialFormData)
@@ -24,6 +35,69 @@ function Contact() {
     }))
   }
 
+  const postMessage = async () => {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), requestTimeoutMs)
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+          subject: 'New portfolio contact message',
+          from_name: formData.name.trim() || 'Portfolio visitor',
+          replyto: formData.email.trim(),
+          botcheck: formData.website,
+        }),
+        signal: controller.signal,
+      })
+
+      const rawBody = await response.text()
+      let data = null
+
+      try {
+        data = rawBody ? JSON.parse(rawBody) : null
+      } catch {
+        data = null
+      }
+
+      if (!response.ok) {
+        const error = new Error(data?.message || `Request failed with status ${response.status}`)
+        error.retryable = response.status >= 500 || response.status === 429
+        throw error
+      }
+
+      if (!isSuccessfulResponse(data)) {
+        const error = new Error(data?.message || 'Submission was not accepted by the mail service')
+        error.retryable = false
+        throw error
+      }
+
+      return data
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        const timeoutError = new Error('The request timed out before a response was received')
+        timeoutError.retryable = false
+        throw timeoutError
+      }
+
+      if (error.retryable === undefined) {
+        error.retryable = true
+      }
+
+      throw error
+    } finally {
+      clearTimeout(timer)
+    }
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -34,43 +108,44 @@ function Contact() {
     // Bots fill every field including hidden ones; real visitors never see this one
     if (formData.website) {
       setStatus('success')
-      setStatusMessage('Thank you. Your message has been sent successfully, and I will respond as soon as possible.')
+      setStatusMessage(SUCCESS_MESSAGE)
       setFormData(initialFormData)
+      return
+    }
+
+    if (!accessKey) {
+      setStatus('error')
+      setStatusMessage(UNCONFIGURED_MESSAGE)
       return
     }
 
     setStatus('sending')
     setStatusMessage('Sending your message...')
 
-    const payload = new FormData()
-    payload.append('name', formData.name.trim())
-    payload.append('email', formData.email.trim())
-    payload.append('message', formData.message.trim())
-    payload.append('_subject', 'New portfolio contact message')
-    payload.append('_template', 'table')
-    payload.append('_captcha', 'true')
-    payload.append('_honey', formData.website)
+    let lastError = null
 
-    try {
-      const response = await fetch(contactEndpoint, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-        },
-        body: payload,
-      })
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      try {
+        await postMessage()
 
-      if (!response.ok) {
-        throw new Error('Message delivery failed')
+        setStatus('success')
+        setStatusMessage(SUCCESS_MESSAGE)
+        setFormData(initialFormData)
+        return
+      } catch (error) {
+        lastError = error
+
+        if (!error.retryable || attempt === maxAttempts) {
+          break
+        }
+
+        await wait(retryDelayMs * attempt)
       }
-
-      setStatus('success')
-      setStatusMessage('Thank you. Your message has been sent successfully, and I will respond as soon as possible.')
-      setFormData(initialFormData)
-    } catch (error) {
-      setStatus('error')
-      setStatusMessage('Sorry, your message could not be sent right now. Please email me directly at jumaah933@gmail.com.')
     }
+
+    console.error('Contact form submission failed:', lastError)
+    setStatus('error')
+    setStatusMessage(FAILURE_MESSAGE)
   }
 
   return (
