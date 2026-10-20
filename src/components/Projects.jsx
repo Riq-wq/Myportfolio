@@ -36,11 +36,11 @@ function Projects() {
     {
       title: 'Employee Salary & Headcount Dashboard',
       type: 'Data Analysis',
-      description: 'End-to-end HR analytics pipeline: cleaned a messy employee dataset with Python and Pandas, loaded it into MySQL, queried it with SQL, and visualized salary and headcount trends in Power BI.',
-      impact: 'Surfaced Nairobi as the highest-paying city (KES 72,500 avg) versus Nakuru\u2019s lowest (KES 48,000), Kisumu as the largest headcount hub, and KES 554,500 in total salary expense across the company.',
-      technologies: ['Python', 'Pandas', 'MySQL', 'SQL', 'Power BI', 'DAX'],
+      description: 'End-to-end HR analytics pipeline: cleaned a messy HR export with Python and Pandas (missing values, a 10x salary typo, a duplicate row), loaded it into MySQL, queried it with SQL, and shipped a Power BI dashboard plus a reproducible, auto-generated PDF report.',
+      impact: 'Cleaning changed the headline: the raw average of KES 151,111 was 145% above the true KES 61,611. Nairobi pays highest (KES 72,500 avg) vs Nakuru\u2019s lowest (KES 48,000), Kisumu has the largest headcount (3 of 9), and total salary expense is KES 554,500.',
+      technologies: ['Python', 'Pandas', 'MySQL', 'SQL', 'Power BI', 'DAX', 'ReportLab'],
       link: 'https://github.com/Riq-wq/employee-salary-headcount-dashboard',
-      image: 'https://raw.githubusercontent.com/Riq-wq/employee-salary-headcount-dashboard/main/reports/charts/salary_by_city.png',
+      image: 'https://raw.githubusercontent.com/Riq-wq/employee-salary-headcount-dashboard/main/assets/dashboard.png',
       visual: 'image',
     },
   ]
