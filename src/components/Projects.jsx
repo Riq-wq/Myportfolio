@@ -36,8 +36,8 @@ function Projects() {
     {
       title: 'Employee Salary & Headcount Dashboard',
       type: 'Data Analysis',
-      description: 'End-to-end HR analytics pipeline: cleaned a messy HR export with Python and Pandas (missing values, a 10x salary typo, a duplicate row), loaded it into MySQL, queried it with SQL, and shipped a Power BI dashboard plus a reproducible, auto-generated PDF report \u2014 now automated as a scheduled job that validates the data before loading and refuses to publish if it fails.',
-      impact: 'Cleaning changed the headline: the raw average of KES 151,111 was 145% above the true KES 61,611. Nairobi pays highest (KES 72,500 avg) vs Nakuru\u2019s lowest (KES 48,000), Kisumu has the largest headcount (3 of 9), and total salary expense is KES 554,500.',
+      description: 'End-to-end HR analytics pipeline: cleaned a messy HR export with Python and Pandas (missing values, a 10x salary typo, a duplicate row), loaded it into MySQL, queried it with SQL, and shipped a Power BI dashboard plus a reproducible, auto-generated PDF report \u2014 now automated as a scheduled job: 15 data-quality checks gate every load, and each successful run is committed to git as an audit trail of the data.',
+      impact: 'Cleaning changed the headline: the raw average of KES 151,111 was 145% above the true KES 61,611. The city pay gap doesn\u2019t hold up either \u2014 Nairobi\u2019s top average of KES 72,500 comes from one senior hire, not a location premium, while Nakuru\u2019s lowest is KES 48,000. Total salary expense: KES 554,500.',
       technologies: ['Python', 'Pandas', 'MySQL', 'SQL', 'Power BI', 'DAX', 'ReportLab', 'Automation'],
       link: 'https://github.com/Riq-wq/employee-salary-headcount-dashboard',
       image: 'https://raw.githubusercontent.com/Riq-wq/employee-salary-headcount-dashboard/main/assets/dashboard.png',
