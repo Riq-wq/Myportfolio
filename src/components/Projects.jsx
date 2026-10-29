@@ -35,6 +35,16 @@ function Projects() {
       visual: 'image',
     },
     {
+      title: 'Vrinda Store Sales & Order Analytics',
+      type: 'Data Analysis',
+      description: 'End-to-end analysis of 31,047 e-commerce orders across 7 sales channels, cleaned with Excel Power Query and visualized with a native Excel pivot dashboard.',
+      impact: 'Revenue peaked in March (₹1.93M) and declined to November (₹1.62M). Women\'s wear drives ~64% of revenue (₹13.6M vs ₹7.6M menswear). Sets and Kurtas account for ~73% of orders. Amazon leads with 11,016 orders. 92.3% of orders delivered successfully.',
+      technologies: ['Excel', 'Power Query', 'Pivot Tables', 'Excel Charts'],
+      link: 'https://github.com/Riq-wq/vrinda-store-sales-analytics',
+      image: 'https://raw.githubusercontent.com/Riq-wq/vrinda-store-sales-analytics/main/assets/charts/monthly_orders_vs_sales.png',
+      visual: 'image',
+    },
+    {
       title: 'ImpactHub Foundation',
       type: 'Software Development',
       description: 'Responsive donor and partnership website with donation flows, contact handling, automated donor emails, admin support, and backend API endpoints.',
